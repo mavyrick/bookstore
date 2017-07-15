@@ -25,6 +25,8 @@ skip_before_filter :verify_authenticity_token
   end
 private
   def order_item_params
-    params.require(:order_item).permit(:quantity, :product_id)
+    service = BookstoreService.new
+    @product = service.show_product_call(params['id'])
+    params.require(:order_item).permit(:quantity, '1')
   end
 end
