@@ -1,0 +1,7 @@
+class Product < ActiveResource::Base
+  # belongs_to :category
+  self.site = 'http://localhost:2000/'
+  has_many :order_items
+
+  # default_scope { where(active: true) }
+end

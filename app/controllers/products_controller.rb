@@ -4,6 +4,7 @@ class ProductsController < ApplicationController
     service = BookstoreService.new
     @products = service.index_product_call(params)
     @categories = service.index_category_call
+    @order_item = current_order.order_items.new
   end
 
   def show
