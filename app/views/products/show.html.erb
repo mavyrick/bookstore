@@ -7,7 +7,7 @@
               <p class="lead">Book Categories</p>
               <div class="list-group">
                 <% @categories.each do |cat| %>
-                  <a href="#" class="list-group-item"><%= cat.category %></a>
+                  <a href="#" class="list-group-item"><%= cat['category'] %></a>
                   <% end %>
               </div>
           </div>
@@ -17,16 +17,16 @@
                 <div class="thumbnail">
                     <img class="img-responsive" src="/books2.jpg" alt="">
                     <div class="caption-full">
-                        <h4 class="pull-right">$<%= @product.first['price'] %></h4>
-                        <h4><a href="#"><%= @product.first['name'] %></a>
+                        <h4 class="pull-right">$<%= @product['price'] %></h4>
+                        <h4><a href="#"><%= @product['name'] %></a>
                         </h4>
-                        <p><%= @product.first['description'] %></p>
+                        <p><%= @product['description'] %></p>
                     </div>
                 </div>
 
             </div>
 
-            <div id='purchase-button'><%= link_to "Purchase", new_charge_path, class: 'btn-lg btn-success' %></div>
+            <div id='purchase-button'><%= link_to "Purchase", new_product_charge_path(1), class: 'btn-lg btn-success' %></div>
 
         </div>
 
@@ -41,7 +41,7 @@
         <footer>
             <div class="row">
                 <div class="col-lg-12">
-                    <p>Copyright &copy; Your Website 2014</p>
+                    <p>Copyright &copy; Josh Sorokin 2017</p>
                 </div>
             </div>
         </footer>

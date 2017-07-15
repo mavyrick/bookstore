@@ -1,12 +1,15 @@
 class ChargesController < ApplicationController
 
+  before_action :authenticate_user!
+
   def new
+    service = BookstoreService.new
+    @product = service.show_product_call(params['id'])
+    @product_id = params['id']
   end
 
   def create
     # Amount in cents
-    product_json = RestClient.get 'http://localhost:2000/products.json/'
-    @amount = JSON.parse(product_json).first['price']
 
     customer = Stripe::Customer.create(
       :email => params[:stripeEmail],
