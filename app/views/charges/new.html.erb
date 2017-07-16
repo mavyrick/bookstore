@@ -1,4 +1,4 @@
-<%= form_tag product_charges_path do %>
+<%= form_tag new_charge_path do %>
   <article>
     <% if flash[:error].present? %>
       <div id="error_explanation">
@@ -6,14 +6,14 @@
       </div>
     <% end %>
     <label class="amount">
-      <span>Amount: $500</span>
+      <span>Amount: <%= number_to_currency current_order.subtotal %></span>
     </label>
   </article>
 
   <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
           data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-          data-description="A month's subscription"
-          data-amount="500"
+          data-description="Book Order"
+          data-amount=<%= current_order.subtotal * 100 %>
           data-locale="auto"
           data-bitcoin="true"></script>
 <% end %>

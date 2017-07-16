@@ -7,7 +7,7 @@
               <p class="lead">Book Categories</p>
               <div class="list-group">
                 <% @categories.each do |cat| %>
-                  <a href="#" class="list-group-item"><%= cat['category'] %></a>
+                  <%= link_to cat['category'], category_path(cat['id']), class: "list-group-item" %>
                   <% end %>
               </div>
           </div>
@@ -17,16 +17,21 @@
                 <div class="thumbnail">
                     <img class="img-responsive" src="/books2.jpg" alt="">
                     <div class="caption-full">
-                        <h4 class="pull-right">$<%= @product['price'] %></h4>
-                        <h4><a href="#"><%= @product['name'] %></a>
-                        </h4>
+                      <h3><%= @product['product_category'] %></h3>
+                        <h3 class="pull-right">$<%= @product['price'] %></h2>
+                        <h1><a href="#"><%= @product['name'] %></a></h4>
                         <p><%= @product['description'] %></p>
+
+                      <div><%= render "product_row_show", product: @product, order_item: @order_item %></div>
                     </div>
                 </div>
 
             </div>
 
-            <div id='purchase-button'><%= link_to "Purchase", new_product_charge_path(1), class: 'btn-lg btn-success' %></div>
+
+
+
+            <!-- <div id='purchase-button'><%# link_to "Checkout", new_product_charge_path(1), class: 'btn-lg btn-success' %></div> -->
 
         </div>
 

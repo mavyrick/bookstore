@@ -1,0 +1,7 @@
+<div class="shopping-cart">
+  <%= render "shopping_cart" %>
+  <div class='pull-right'>
+    <h2>Total Cost:</h2>
+    <h3><%= number_to_currency current_order.subtotal %></h3>
+  </div>
+</div>

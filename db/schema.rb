@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170715075849) do
+ActiveRecord::Schema.define(version: 20170716001542) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -53,12 +53,15 @@ ActiveRecord::Schema.define(version: 20170715075849) do
   end
 
   create_table "order_items", force: :cascade do |t|
-    t.integer  "order_id",    limit: 4
-    t.decimal  "unit_price",            precision: 10
-    t.integer  "quantity",    limit: 4
-    t.decimal  "total_price",           precision: 10
-    t.datetime "created_at",                           null: false
-    t.datetime "updated_at",                           null: false
+    t.integer  "order_id",      limit: 4
+    t.decimal  "unit_price",                precision: 10
+    t.integer  "quantity",      limit: 4
+    t.decimal  "total_price",               precision: 10
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
+    t.string   "product_name",  limit: 255
+    t.integer  "product_id",    limit: 4
+    t.decimal  "product_price",             precision: 10
   end
 
   add_index "order_items", ["order_id"], name: "index_order_items_on_order_id", using: :btree
@@ -74,10 +77,10 @@ ActiveRecord::Schema.define(version: 20170715075849) do
     t.decimal  "tax",                       precision: 10
     t.decimal  "shipping",                  precision: 10
     t.decimal  "total",                     precision: 10
-    t.integer  "order_status_id", limit: 4
     t.datetime "created_at",                               null: false
     t.datetime "updated_at",                               null: false
     t.decimal  "price",                     precision: 10
+    t.integer  "order_status_id", limit: 4
   end
 
   add_index "orders", ["order_status_id"], name: "index_orders_on_order_status_id", using: :btree

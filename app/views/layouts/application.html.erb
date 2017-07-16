@@ -4,16 +4,16 @@
   <title>Josh's Bookstore</title>
   <%#= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%#= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%#= csrf_meta_tags %>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-<% if request.ssl? %>
-  <%= stylesheet_link_tag 'https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css' %>
-  <%= javascript_include_tag 'https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js' %>
-<% else %>
-  <%= stylesheet_link_tag 'http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css' %>
-  <%= javascript_include_tag 'http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js' %>
-<% end %>
-<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+<%# if request.ssl? %>
+  <%#= stylesheet_link_tag 'https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css' %>
+  <%#= javascript_include_tag 'https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js' %>
+<%# else %>
+  <%#= stylesheet_link_tag 'http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css' %>
+  <%#= javascript_include_tag 'http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js' %>
+<%# end %>
   <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
   <meta name="stripe-pk" content="<%= Rails.application.secrets.stripe_publishable_key %>">
 </head>
@@ -29,11 +29,12 @@
         <li><%= link_to 'Home', root_path %></li>
       </ul>
       <ul class="nav navbar-nav">
-        <li><%= link_to 'Cart', root_path %></li>
+        <li><%= link_to 'Cart', carts_path %></li>
       </ul>
       <ul class="nav navbar-nav pull-right">
         <% if user_signed_in? %>
-        <li><%= link_to "#{current_order.order_items.size} Items in Cart ( #{number_to_currency current_order.subtotal} )", cart_path(1), class: "btn btn-link" %></li>
+        <li><%= render 'layouts/cart_text' %></li>
+        <!-- <li><%# link_to "#{current_order.order_items.size} Items in Cart ( #{number_to_currency current_order.subtotal} )", cart_path(1), class: "btn btn-link" %></li> -->
           <li class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#">
               <%= current_user.email %>
@@ -44,9 +45,12 @@
               <li><%= link_to 'Log out', destroy_user_session_path, method: :delete %></li>
             </ul>
           </li>
+          <li><%= link_to "Checkout", new_charge_path, class: 'btn-lg btn-success' %></li>
         <% else %>
+          <li><%= render 'layouts/cart_text' %></li>
           <li><%= link_to 'Log In', new_user_session_path %></li>
           <li><%= link_to 'Sign Up', new_user_registration_path %></li>
+          <li><%= link_to "Checkout", new_charge_path, class: 'btn-lg btn-success' %></li>
         <% end %>
       </ul>
     </div>

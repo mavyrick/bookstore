@@ -12,15 +12,17 @@ class OrderItem < ActiveRecord::Base
     if persisted?
       self[:unit_price]
     else
-      service = BookstoreService.new
-      product = service.show_product_call('1')
-      product['price']
+      self.product_price
     end
   end
 
   def total_price
     unit_price * quantity
   end
+
+  # def all_price
+  #   total_price * self.product_price.count
+  # end
 
 private
   def product_present

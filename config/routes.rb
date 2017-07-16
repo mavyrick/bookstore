@@ -12,15 +12,21 @@ Rails.application.routes.draw do
 
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
+
   devise_for :users
 
-  resources :products do
-    resources :charges
-  end
+  resources :products
 
-  resources :carts, only: [:show]
+
+  resources :carts, only: [:index, :show]
+
+  resources :charges
+
+  post '/carts/:cart_id/charges/new', to: 'charges#new'
 
   resources :order_items, only: [:create, :update, :destroy]
+
+  resources :categories
 
 
   # The priority is based upon order of creation: first created -> highest priority.

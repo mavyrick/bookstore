@@ -27,6 +27,6 @@ private
   def order_item_params
     service = BookstoreService.new
     @product = service.show_product_call(params['id'])
-    params.require(:order_item).permit(:quantity, '1')
+    params.require(:order_item).permit(:quantity, :product_name, :product_id, :product_price)
   end
 end
