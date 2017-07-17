@@ -22,7 +22,7 @@ Rails.application.routes.draw do
 
   resources :charges
 
-  post '/carts/:cart_id/charges/new', to: 'charges#new'
+  post '/charges/new', to: 'charges#new'
 
   resources :order_items, only: [:create, :update, :destroy]
 

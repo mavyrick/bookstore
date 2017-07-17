@@ -1,1 +1,13 @@
-<h2>Thanks, you paid <strong>current_order.subtotal</strong>!</h2>
+<head>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+
+<center>
+<div id="thank-you">
+<h1>Thank you for your purchase!</h1>
+<br>
+<%= link_to "Back to Bookstore", root_path, class: 'btn-lg btn-primary' %>
+</div>
+</center>

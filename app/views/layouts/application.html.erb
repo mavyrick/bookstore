@@ -4,6 +4,8 @@
   <title>Josh's Bookstore</title>
   <%#= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%#= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+
+
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
@@ -33,7 +35,6 @@
       </ul>
       <ul class="nav navbar-nav pull-right">
         <% if user_signed_in? %>
-        <li><%= render 'layouts/cart_text' %></li>
         <!-- <li><%# link_to "#{current_order.order_items.size} Items in Cart ( #{number_to_currency current_order.subtotal} )", cart_path(1), class: "btn btn-link" %></li> -->
           <li class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#">
@@ -45,11 +46,12 @@
               <li><%= link_to 'Log out', destroy_user_session_path, method: :delete %></li>
             </ul>
           </li>
+          <li><%= render 'layouts/cart_text' %></li>
           <li><%= link_to "Checkout", new_charge_path, class: 'btn-lg btn-success' %></li>
         <% else %>
-          <li><%= render 'layouts/cart_text' %></li>
           <li><%= link_to 'Log In', new_user_session_path %></li>
           <li><%= link_to 'Sign Up', new_user_registration_path %></li>
+          <li><%= render 'layouts/cart_text' %></li>
           <li><%= link_to "Checkout", new_charge_path, class: 'btn-lg btn-success' %></li>
         <% end %>
       </ul>

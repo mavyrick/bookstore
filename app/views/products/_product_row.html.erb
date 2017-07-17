@@ -9,6 +9,6 @@
             <%= f.hidden_field :product_name, value: product['name'] %>
             <%= f.hidden_field :product_price, value: product['price'] %>
           <div id="add-to-cart-index" class='pull-right'>
-            <%= f.submit "Add to Cart", class: "btn btn-primary" %>
+            <%= f.submit "Add to Cart", class: "btn btn-primary", data: { confirm: "Add #{product['name']} to cart?" } %>
           </div>
       <% end %>

@@ -1,19 +1,100 @@
-<%= form_tag new_charge_path do %>
+<head>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<!-- /*<style>
+
+body {
+  background-color: whitesmoke;
+  font-family: arial;
+}
+
+#charge-wrapper {
+  margin: auto;
+  width: 50%;
+  border: 2px solid black;
+  margin-top: 25px;
+  padding: 25px;
+  padding-top: 0px;
+  border-radius: 20px;
+  background-color: aliceblue;
+}
+
+#total-amount {
+  float: right;
+}
+
+#charge-table
+{
+  border: solid black 1px;
+  font-size: 20px;
+  background-color: whitesmoke;
+}
+
+.charge-data
+{
+  border: solid black 1px;
+  padding: 10px;
+  text-align: center;
+}
+
+th {
+  font-weight: bold;
+  font-size: 25px;
+}
+
+#order-title {
+  font-size: 50px;
+}
+
+</style>*/ -->
+
+<div id="charge-wrapper">
+  <center><u><h1 id="order-title">Order</h1></u></center>
+  <br>
+  <%= form_tag charges_path do %>
   <article>
     <% if flash[:error].present? %>
-      <div id="error_explanation">
-        <p><%= flash[:error] %></p>
-      </div>
+    <div id="error_explanation">
+      <p><%= flash[:error] %></p>
+    </div>
     <% end %>
+      <div>
+        <center><table id="charge-table">
+        </div>
+        <tr>
+          <th class="charge-data">Product</th>
+          <th class="charge-data">Unit Price</th>
+          <th class="charge-data">Quantity</th>
+          <th class="charge-data">Total Price</th>
+        </tr>
+        <div>
+        <% @order_items.each do |order_item| %>
+        <div>
+          <tr>
+      <td class="charge-data"><%= order_item.product_name %></td>
+    <td class="charge-data">$<%= order_item.product_price %></td>
+  <td class="charge-data"><%= order_item.quantity %></td>
+<td class="charge-data">$<%= order_item.total_price %></td>
+    </tr>
+  </div>
+    <% end %>
+  </table></center>
+    </div>
+    <br>
+    <div id="payment-button">
     <label class="amount">
-      <span>Amount: <%= number_to_currency current_order.subtotal %></span>
+      <span><h2>Total amount: <%= number_to_currency current_order.subtotal %></h2></span>
     </label>
   </article>
 
   <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-          data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-          data-description="Book Order"
-          data-amount=<%= current_order.subtotal * 100 %>
-          data-locale="auto"
-          data-bitcoin="true"></script>
-<% end %>
+  data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+  data-description="Book Order"
+  data-amount=<%= current_order.subtotal * 100 %>
+  data-locale="auto"
+  data-bitcoin="true"></script>
+  <% end %>
+</div>
+</div>

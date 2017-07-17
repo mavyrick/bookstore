@@ -6,6 +6,7 @@
           <div class="col-md-3">
               <p class="lead">Book Categories</p>
               <div class="list-group">
+                <%= link_to "All", categories_path, class: "list-group-item" %>
                 <% @categories.each do |cat| %>
                   <%= link_to cat['category'], category_path(cat['id']), class: "list-group-item" %>
                   <% end %>
