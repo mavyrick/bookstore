@@ -3,52 +3,6 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
-<!-- /*<style>
-
-body {
-  background-color: whitesmoke;
-  font-family: arial;
-}
-
-#charge-wrapper {
-  margin: auto;
-  width: 50%;
-  border: 2px solid black;
-  margin-top: 25px;
-  padding: 25px;
-  padding-top: 0px;
-  border-radius: 20px;
-  background-color: aliceblue;
-}
-
-#total-amount {
-  float: right;
-}
-
-#charge-table
-{
-  border: solid black 1px;
-  font-size: 20px;
-  background-color: whitesmoke;
-}
-
-.charge-data
-{
-  border: solid black 1px;
-  padding: 10px;
-  text-align: center;
-}
-
-th {
-  font-weight: bold;
-  font-size: 25px;
-}
-
-#order-title {
-  font-size: 50px;
-}
-
-</style>*/ -->
 
 <div id="charge-wrapper">
   <center><u><h1 id="order-title">Order</h1></u></center>
@@ -88,6 +42,7 @@ th {
       <span><h2>Total amount: <%= number_to_currency current_order.subtotal %></h2></span>
     </label>
   </article>
+  <%= link_to "Back to Cart", carts_path, class: "btn btn-warning pull-right" %>
 
   <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
   data-key="<%= Rails.configuration.stripe[:publishable_key] %>"

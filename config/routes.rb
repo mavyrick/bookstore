@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  devise_for :users
+
   get 'order_items/create'
 
   get 'order_items/update'
@@ -13,10 +15,7 @@ Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
 
-  devise_for :users
-
   resources :products
-
 
   resources :carts, only: [:index, :show]
 
