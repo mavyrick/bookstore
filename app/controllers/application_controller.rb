@@ -12,4 +12,13 @@ class ApplicationController < ActionController::Base
       Order.new
     end
   end
+
+  def service
+    Bookstore.new
+  end
+
+  def kaminari(data)
+    Kaminari.paginate_array(data).page(params[:page]).per(9)
+  end
+
 end

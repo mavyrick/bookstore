@@ -62,6 +62,12 @@ gem 'rest-client', '~> 1.8'
 
 gem 'activeresource', '~> 4.1.0'
 
+gem 'react-rails', '~> 2.2', '>= 2.2.1'
+
+gem 'webpacker', '~> 2.0'
+
+gem 'react_on_rails', '~> 8.0', '>= 8.0.5'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
